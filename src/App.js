@@ -1,13 +1,23 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
 function App() {
   const [todoInput, setTodoInput] = useState("");
+  const [todos, setTodos] = useState([]);
 
   const todoInputChangeHandler = (e) => {
     setTodoInput(e.target.value);
+  };
+
+  const addTodoHandler = (e) => {
+    e.preventDefault();
+    setTodos((prevTodos) => [
+      ...prevTodos,
+      { id: new Date().getTime(), content: todoInput, completed: false },
+    ]);
+    setTodoInput("");
   };
 
   return (
@@ -17,8 +27,9 @@ function App() {
         <TodoForm
           todoInput={todoInput}
           todoInputChangeHandler={todoInputChangeHandler}
+          addTodoHandler={addTodoHandler}
         />
-        <TodoList />
+        <TodoList todos={todos} />
       </div>
     </div>
   );

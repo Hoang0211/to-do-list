@@ -8,7 +8,9 @@ function TodoForm(props) {
         value={props.todoInput}
         onChange={props.todoInputChangeHandler}
       />
-      <button className="todo-add">Add</button>
+      <button className="todo-add" onClick={props.addTodoHandler}>
+        Add
+      </button>
       <select className="todos-filter">
         <option value="all">All</option>
         <option value="completed">Completed</option>

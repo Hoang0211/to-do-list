@@ -1,11 +1,12 @@
 import Todo from "./Todo";
 
-function TodoList() {
+function TodoList(props) {
   return (
     <div className="todos-container">
       <ul className="todo-list">
-        <Todo />
-        <Todo />
+        {props.todos.map((todo) => (
+          <Todo key={todo.id} todo={todo} />
+        ))}
       </ul>
     </div>
   );

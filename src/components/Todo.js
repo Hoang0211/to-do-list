@@ -1,7 +1,12 @@
-function Todo() {
+function Todo(props) {
   return (
     <div className="todo">
-      <p>To do item</p>
+      <div className="todo__content">{props.todo.content}</div>
+      <input
+        className="todo__check"
+        type="checkbox"
+        checked={props.todo.completed}
+      />
     </div>
   );
 }
