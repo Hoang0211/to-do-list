@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import Todo from "./components/Todo";
 
 function App() {
   const [todoInput, setTodoInput] = useState("");
@@ -53,7 +53,13 @@ function App() {
           addTodoHandler={addTodoHandler}
           changeFilterStatusHandler={changeFilterStatusHandler}
         />
-        <TodoList todos={todos} filteredTodos={filteredTodos} />
+        <div className="todos-container">
+          <ul className="todo-list">
+            {filteredTodos.map((todo) => (
+              <Todo key={todo.id} todo={todo} setTodos={setTodos} />
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
