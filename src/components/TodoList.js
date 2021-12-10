@@ -4,7 +4,7 @@ function TodoList(props) {
   return (
     <div className="todos-container">
       <ul className="todo-list">
-        {props.todos.map((todo) => (
+        {props.filteredTodos.map((todo) => (
           <Todo key={todo.id} todo={todo} />
         ))}
       </ul>
