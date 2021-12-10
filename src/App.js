@@ -62,6 +62,7 @@ function App() {
                 todo={todo}
                 todos={todos}
                 setTodos={setTodos}
+                filterStatus={filterStatus}
               />
             ))}
           </ul>
