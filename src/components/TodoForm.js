@@ -1,7 +1,13 @@
-function TodoForm() {
+function TodoForm(props) {
   return (
     <form className="todo-form">
-      <input className="todo-input" type="text" placeholder="Add todo" />
+      <input
+        className="todo-input"
+        type="text"
+        placeholder="Add todo"
+        value={props.todoInput}
+        onChange={props.todoInputChangeHandler}
+      />
       <button className="todo-add">Add</button>
       <select className="todos-filter">
         <option value="all">All</option>
