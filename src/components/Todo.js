@@ -6,6 +6,7 @@ function Todo(props) {
         className="todo__check"
         type="checkbox"
         checked={props.todo.completed}
+        onChange={() => props.checkHandler(props.todo.id)}
       />
     </div>
   );
