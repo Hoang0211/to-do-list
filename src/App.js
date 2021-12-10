@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import TodoForm from "./components/TodoForm";
 import Todo from "./components/Todo";
@@ -9,8 +9,11 @@ function App() {
   const [filterStatus, setFilterStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
 
+  const todoInputRef = useRef();
+
   useEffect(() => {
     getFromLocal();
+    todoInputRef.current.focus();
   }, []);
 
   useEffect(() => {
@@ -30,6 +33,7 @@ function App() {
       { id: new Date().getTime(), content: todoInput, completed: false },
     ]);
     setTodoInput("");
+    todoInputRef.current.focus();
   };
 
   const changeFilterStatusHandler = (e) => {
@@ -51,6 +55,7 @@ function App() {
   const saveToLocal = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
+
   const getFromLocal = () => {
     if (localStorage.getItem("todos") === null) {
       localStorage.setItem("todos", JSON.stringify([]));
@@ -64,6 +69,7 @@ function App() {
       <h1 className="title">To Do List</h1>
       <div className="wrapper">
         <TodoForm
+          todoInputRef={todoInputRef}
           todoInput={todoInput}
           todoInputChangeHandler={todoInputChangeHandler}
           addTodoHandler={addTodoHandler}

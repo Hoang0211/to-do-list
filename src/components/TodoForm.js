@@ -7,6 +7,7 @@ function TodoForm(props) {
         placeholder="Add todo"
         value={props.todoInput}
         onChange={props.todoInputChangeHandler}
+        ref={props.todoInputRef}
       />
       <button className="todo-add" onClick={props.addTodoHandler}>
         Add
