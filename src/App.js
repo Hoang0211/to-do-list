@@ -10,11 +10,15 @@ function App() {
   const [filteredTodos, setFilteredTodos] = useState([]);
 
   useEffect(() => {
+    getFromLocal();
+  }, []);
+
+  useEffect(() => {
+    saveToLocal();
     filterTodos();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todos, filterStatus]);
 
-  // Form functions
   const todoInputChangeHandler = (e) => {
     setTodoInput(e.target.value);
   };
@@ -41,6 +45,17 @@ function App() {
       setFilteredTodos(todos.filter((todo) => !todo.completed));
     } else {
       console.log("Error from filter todos!");
+    }
+  };
+
+  const saveToLocal = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
+  const getFromLocal = () => {
+    if (localStorage.getItem("todos") === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      setTodos(JSON.parse(localStorage.getItem("todos")));
     }
   };
 
