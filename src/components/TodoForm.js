@@ -11,7 +11,10 @@ function TodoForm(props) {
       <button className="todo-add" onClick={props.addTodoHandler}>
         Add
       </button>
-      <select className="todos-filter">
+      <select
+        className="todos-filter"
+        onChange={props.changeFilterStatusHandler}
+      >
         <option value="all">All</option>
         <option value="completed">Completed</option>
         <option value="uncompleted">Uncompleted</option>
