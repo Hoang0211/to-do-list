@@ -14,6 +14,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todos, filterStatus]);
 
+  // Form functions
   const todoInputChangeHandler = (e) => {
     setTodoInput(e.target.value);
   };
@@ -43,18 +44,6 @@ function App() {
     }
   };
 
-  // Todo functions
-  const checkHandler = (todoId) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === todoId) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
-    );
-  };
-
   return (
     <div className="to-do-list">
       <h1 className="title">To Do List</h1>
@@ -68,7 +57,12 @@ function App() {
         <div className="todos-container">
           <ul className="todo-list">
             {filteredTodos.map((todo) => (
-              <Todo key={todo.id} todo={todo} checkHandler={checkHandler} />
+              <Todo
+                key={todo.id}
+                todo={todo}
+                todos={todos}
+                setTodos={setTodos}
+              />
             ))}
           </ul>
         </div>
