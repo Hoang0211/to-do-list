@@ -65,8 +65,8 @@ function App() {
   };
 
   return (
-    <div className="to-do-list">
-      <h1 className="title">To Do List</h1>
+    <div className="todo-list-app">
+      <h1 className="title">Todo List</h1>
       <div className="wrapper">
         <TodoForm
           todoInputRef={todoInputRef}

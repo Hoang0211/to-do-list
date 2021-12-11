@@ -59,24 +59,26 @@ function Todo(props) {
             onChange={contentOnChangeHandler}
           />
           <RiCheckLine
-            className="todo-edit__update icons"
+            className="todo-edit__update icon"
             onClick={updateContentHandler}
           />
         </li>
       ) : (
         <li className="todo">
           <div className="todo__content">{props.todo.content}</div>
-          <RiEdit2Line className="todo__edit icons" onClick={editHandler} />
-          <RiDeleteBinLine
-            className="todo__delete icons"
-            onClick={deleteHandler}
-          />
-          <input
-            className="todo__check"
-            type="checkbox"
-            checked={props.todo.completed}
-            onChange={checkHandler}
-          />
+          <div className="todo__icons">
+            <RiEdit2Line className="todo__edit icon" onClick={editHandler} />
+            <RiDeleteBinLine
+              className="todo__delete icon"
+              onClick={deleteHandler}
+            />
+            <input
+              className="todo__check icon"
+              type="checkbox"
+              checked={props.todo.completed}
+              onChange={checkHandler}
+            />
+          </div>
         </li>
       )}
     </>
