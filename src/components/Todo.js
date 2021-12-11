@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { RiCheckLine, RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 
 function Todo(props) {
   const [editing, setEditing] = useState(false);
   const [editingText, setEditingText] = useState(props.todo.content);
+
+  const editTextRef = useRef();
+
+  useEffect(() => {
+    if (editTextRef.current) {
+      editTextRef.current.focus();
+    }
+  }, [editing]);
 
   // If new todo is added or filter status is changed when editing, return the old value
   useEffect(() => {
@@ -57,6 +65,7 @@ function Todo(props) {
             type="text"
             value={editingText}
             onChange={contentOnChangeHandler}
+            ref={editTextRef}
           />
           <RiCheckLine
             className="todo-edit__update icon"
