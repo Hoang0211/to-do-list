@@ -27,7 +27,7 @@ body {
 	color: var(--clr-dark);
 	background: var(--clr-bg);
 }
-input:focus {
+input:focus, select:focus {
     outline: none;
 }
 
@@ -121,5 +121,6 @@ form {
     height: 30px;
     width: 30px;
     margin-left: 15px;
+    color: grey;
     cursor: pointer;
 }
