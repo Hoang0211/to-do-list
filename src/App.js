@@ -4,7 +4,6 @@ import TodoForm from "./components/TodoForm";
 import Todo from "./components/Todo";
 
 function App() {
-  console.log("App is rerendered");
   const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [filterStatus, setFilterStatus] = useState("all");
