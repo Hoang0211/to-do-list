@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 import TodoForm from "./components/TodoForm";
 import Todo from "./components/Todo";
 
 function App() {
+  console.log("App is rerendered");
   const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [filterStatus, setFilterStatus] = useState("all");
@@ -12,54 +13,94 @@ function App() {
   const todoInputRef = useRef();
 
   useEffect(() => {
+    const getFromLocal = () => {
+      if (localStorage.getItem("todos") === null) {
+        localStorage.setItem("todos", JSON.stringify([]));
+      } else {
+        setTodos(JSON.parse(localStorage.getItem("todos")));
+      }
+    };
+
     getFromLocal();
     todoInputRef.current.focus();
   }, []);
 
   useEffect(() => {
+    const saveToLocal = () => {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    };
+
+    const filterTodos = () => {
+      if (filterStatus === "all") {
+        setFilteredTodos(todos);
+      } else if (filterStatus === "completed") {
+        const newFilteredTodos = todos.filter((todo) => todo.completed);
+        setFilteredTodos(newFilteredTodos);
+      } else if (filterStatus === "uncompleted") {
+        const newFilteredTodos = todos.filter((todo) => !todo.completed);
+        setFilteredTodos(newFilteredTodos);
+      } else {
+        console.log("Error from filter todos!");
+      }
+    };
+
     saveToLocal();
     filterTodos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todos, filterStatus]);
 
-  const todoInputChangeHandler = (e) => {
+  // Form functions
+  const todoInputChangeHandler = useCallback((e) => {
     setTodoInput(e.target.value);
-  };
+  }, []);
 
-  const addTodoHandler = (e) => {
-    e.preventDefault();
-    setTodos((prevTodos) => [...prevTodos, { id: new Date().getTime(), content: todoInput, completed: false }]);
-    setTodoInput("");
-    todoInputRef.current.focus();
-  };
+  const addTodoHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      setTodos((prevTodos) => [...prevTodos, { id: new Date().getTime(), content: todoInput, completed: false }]);
+      setTodoInput("");
+      todoInputRef.current.focus();
+    },
+    [todoInput]
+  );
 
-  const changeFilterStatusHandler = (e) => {
+  const changeFilterStatusHandler = useCallback((e) => {
     setFilterStatus(e.target.value);
-  };
+  }, []);
 
-  const filterTodos = () => {
-    if (filterStatus === "all") {
-      setFilteredTodos(todos);
-    } else if (filterStatus === "completed") {
-      setFilteredTodos(todos.filter((todo) => todo.completed));
-    } else if (filterStatus === "uncompleted") {
-      setFilteredTodos(todos.filter((todo) => !todo.completed));
-    } else {
-      console.log("Error from filter todos!");
-    }
-  };
+  // Todo functions
+  const checkTodoHandler = useCallback(
+    (todoId) => {
+      const newTodos = todos.map((todo) => {
+        if (todoId === todo.id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      });
+      setTodos(newTodos);
+    },
+    [todos]
+  );
 
-  const saveToLocal = () => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  };
+  const updateTodoContentHandler = useCallback(
+    (todoId, newContent) => {
+      const newTodos = todos.map((todo) => {
+        if (todoId === todo.id) {
+          todo.content = newContent;
+        }
+        return todo;
+      });
+      setTodos(newTodos);
+    },
+    [todos]
+  );
 
-  const getFromLocal = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      setTodos(JSON.parse(localStorage.getItem("todos")));
-    }
-  };
+  const deleteTodoHandler = useCallback(
+    (todoId) => {
+      const newTodos = todos.filter((todo) => todoId !== todo.id);
+      setTodos(newTodos);
+    },
+    [todos]
+  );
 
   return (
     <div className="app">
@@ -74,7 +115,13 @@ function App() {
         />
         <ul className="todos__list">
           {filteredTodos.map((todo) => (
-            <Todo key={todo.id} todo={todo} todos={todos} setTodos={setTodos} filterStatus={filterStatus} />
+            <Todo
+              key={todo.id}
+              todo={todo}
+              checkTodoHandler={checkTodoHandler}
+              updateTodoContentHandler={updateTodoContentHandler}
+              deleteTodoHandler={deleteTodoHandler}
+            />
           ))}
         </ul>
       </div>

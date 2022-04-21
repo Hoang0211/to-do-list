@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import { RiCheckLine, RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 
 import "./todo.scss";
 
-function Todo(props) {
+function Todo({ todo, checkTodoHandler, updateTodoContentHandler, deleteTodoHandler }) {
   const [editing, setEditing] = useState(false);
-  const [editingText, setEditingText] = useState(props.todo.content);
+  const [editingText, setEditingText] = useState(todo.content);
 
   const editTextRef = useRef();
 
@@ -15,22 +15,8 @@ function Todo(props) {
     }
   }, [editing]);
 
-  // If new todo is added or filter status is changed when editing, return the old value
-  useEffect(() => {
-    setEditing(false);
-    setEditingText(props.todo.content);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.todos, props.filterStatus]);
-
   const checkHandler = () => {
-    props.setTodos(
-      props.todos.map((todo) => {
-        if (todo.id === props.todo.id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
-    );
+    checkTodoHandler(todo.id);
   };
 
   const editHandler = () => {
@@ -42,19 +28,12 @@ function Todo(props) {
   };
 
   const updateContentHandler = () => {
-    props.setTodos(
-      props.todos.map((todo) => {
-        if (todo.id === props.todo.id) {
-          todo.content = editingText;
-        }
-        return todo;
-      })
-    );
+    updateTodoContentHandler(todo.id, editingText);
     setEditing(false);
   };
 
   const deleteHandler = () => {
-    props.setTodos(props.todos.filter((todo) => todo.id !== props.todo.id));
+    deleteTodoHandler(todo.id);
   };
 
   return (
@@ -66,11 +45,11 @@ function Todo(props) {
         </>
       ) : (
         <>
-          <p className="todo__content">{props.todo.content}</p>
+          <p className="todo__content">{todo.content}</p>
           <div className="todo__icons">
             <RiEdit2Line className="todo__edit icon" onClick={editHandler} />
             <RiDeleteBinLine className="todo__delete icon" onClick={deleteHandler} />
-            <input className="todo__check icon" type="checkbox" checked={props.todo.completed} onChange={checkHandler} />
+            <input className="todo__check icon" type="checkbox" checked={todo.completed} onChange={checkHandler} />
           </div>
         </>
       )}
@@ -78,4 +57,4 @@ function Todo(props) {
   );
 }
 
-export default Todo;
+export default memo(Todo);

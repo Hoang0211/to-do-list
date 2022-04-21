@@ -1,20 +1,15 @@
+import { memo } from "react";
+
 import "./todoForm.scss";
 
-function TodoForm(props) {
+function TodoForm({ todoInput, todoInputRef, todoInputChangeHandler, addTodoHandler, changeFilterStatusHandler }) {
   return (
     <form className="todos__form">
-      <input
-        className="todos__input"
-        type="text"
-        placeholder="Add todo"
-        value={props.todoInput}
-        onChange={props.todoInputChangeHandler}
-        ref={props.todoInputRef}
-      />
-      <button className="todos__add" onClick={props.addTodoHandler}>
+      <input className="todos__input" type="text" placeholder="Add todo" value={todoInput} onChange={todoInputChangeHandler} ref={todoInputRef} />
+      <button className="todos__add" onClick={addTodoHandler}>
         Add
       </button>
-      <select className="todos__filter" onChange={props.changeFilterStatusHandler}>
+      <select className="todos__filter" onChange={changeFilterStatusHandler}>
         <option className="filter__option" value="all">
           All
         </option>
@@ -29,4 +24,4 @@ function TodoForm(props) {
   );
 }
 
-export default TodoForm;
+export default memo(TodoForm);
