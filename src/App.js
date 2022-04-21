@@ -28,10 +28,7 @@ function App() {
 
   const addTodoHandler = (e) => {
     e.preventDefault();
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      { id: new Date().getTime(), content: todoInput, completed: false },
-    ]);
+    setTodos((prevTodos) => [...prevTodos, { id: new Date().getTime(), content: todoInput, completed: false }]);
     setTodoInput("");
     todoInputRef.current.focus();
   };
@@ -75,19 +72,11 @@ function App() {
           addTodoHandler={addTodoHandler}
           changeFilterStatusHandler={changeFilterStatusHandler}
         />
-        <div className="todos-container">
-          <ul className="todo-list">
-            {filteredTodos.map((todo) => (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                todos={todos}
-                setTodos={setTodos}
-                filterStatus={filterStatus}
-              />
-            ))}
-          </ul>
-        </div>
+        <ul className="todo-list">
+          {filteredTodos.map((todo) => (
+            <Todo key={todo.id} todo={todo} todos={todos} setTodos={setTodos} filterStatus={filterStatus} />
+          ))}
+        </ul>
       </div>
     </div>
   );
