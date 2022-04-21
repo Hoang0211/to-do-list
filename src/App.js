@@ -62,7 +62,7 @@ function App() {
   };
 
   return (
-    <div className="todo-list-app">
+    <div className="app">
       <h1 className="title">Todo List</h1>
       <div className="wrapper">
         <TodoForm
@@ -72,7 +72,7 @@ function App() {
           addTodoHandler={addTodoHandler}
           changeFilterStatusHandler={changeFilterStatusHandler}
         />
-        <ul className="todo-list">
+        <ul className="todos__list">
           {filteredTodos.map((todo) => (
             <Todo key={todo.id} todo={todo} todos={todos} setTodos={setTodos} filterStatus={filterStatus} />
           ))}

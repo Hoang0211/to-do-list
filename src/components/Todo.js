@@ -57,40 +57,23 @@ function Todo(props) {
   };
 
   return (
-    <>
+    <li className={`todo ${editing && "todo-edit"}`}>
       {editing ? (
-        <li className="todo-edit">
-          <input
-            className="todo-edit__content"
-            type="text"
-            value={editingText}
-            onChange={contentOnChangeHandler}
-            ref={editTextRef}
-          />
-          <RiCheckLine
-            className="todo-edit__update icon"
-            onClick={updateContentHandler}
-          />
-        </li>
+        <>
+          <input className="todo-edit__content" type="text" value={editingText} onChange={contentOnChangeHandler} ref={editTextRef} />
+          <RiCheckLine className="todo-edit__update icon" onClick={updateContentHandler} />
+        </>
       ) : (
-        <li className="todo">
-          <div className="todo__content">{props.todo.content}</div>
+        <>
+          <p className="todo__content">{props.todo.content}</p>
           <div className="todo__icons">
             <RiEdit2Line className="todo__edit icon" onClick={editHandler} />
-            <RiDeleteBinLine
-              className="todo__delete icon"
-              onClick={deleteHandler}
-            />
-            <input
-              className="todo__check icon"
-              type="checkbox"
-              checked={props.todo.completed}
-              onChange={checkHandler}
-            />
+            <RiDeleteBinLine className="todo__delete icon" onClick={deleteHandler} />
+            <input className="todo__check icon" type="checkbox" checked={props.todo.completed} onChange={checkHandler} />
           </div>
-        </li>
+        </>
       )}
-    </>
+    </li>
   );
 }
 
