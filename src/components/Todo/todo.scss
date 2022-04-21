@@ -1,45 +1,44 @@
 @import "../../styles/variables";
 
 .todo {
-  min-height: 50px;
+  min-height: 2.5rem;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
-  border: 2px solid $clr-primary;
+  padding: 0 0.5rem;
+  border: $bd-primary;
   border-radius: 5px;
   list-style: none;
   word-wrap: break-word;
 
-  .todo__content,
-  .todo-edit__content {
+  &-edit {
+    border: 1px solid $clr-primaryRed;
+  }
+
+  &__content,
+  &-edit__content {
     font-size: $fs-p;
   }
 
-  .todo-edit__content {
-    width: 400px;
+  &-edit__content {
+    width: 80%;
     border: none;
   }
-  .todo__content {
-    width: 300px;
+  &__content {
+    width: 70%;
   }
 
-  .todo__icons {
-    height: 100%;
+  &__icons {
     display: flex;
-    align-items: center;
   }
 
   .icon {
-    height: 30px;
-    width: 30px;
-    margin-left: 15px;
-    color: grey;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 0.5rem;
+    color: $clr-primaryGray;
     cursor: pointer;
   }
-}
-.todo-edit {
-  border: 2px solid #ff1919;
 }

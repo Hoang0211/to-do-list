@@ -11,16 +11,12 @@
 }
 
 html {
-  font-size: 24px;
+  font-size: 20px;
   font-family: sans-serif, monospace;
   line-height: 1.5;
   background: $clr-bg;
   color: $clr-dark;
   scroll-behavior: smooth;
-
-  @include lgMaxBreakPoint {
-    font-size: 20px;
-  }
 
   @include mdMaxBreakPoint {
     font-size: 16px;
@@ -52,20 +48,26 @@ select:focus {
   justify-content: center;
   align-items: center;
 
-  .title {
-    text-align: center;
-    color: $clr-light;
-  }
   .wrapper {
-    min-height: 600px;
-    margin-top: 10px;
-    padding: 20px;
+    min-height: 500px;
+    width: 80%;
+    max-width: 450px;
+    margin-top: 0.75rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-content: center;
     border-radius: 5px;
-    box-shadow: 3px 3px 5px $clr-dark;
+    box-shadow: $bx-shadow;
     background: $clr-light;
+
+    @include mdMaxBreakPoint {
+      min-height: 400px;
+    }
+
+    @include smMaxBreakPoint {
+      min-height: 300px;
+    }
   }
 }
