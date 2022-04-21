@@ -1,0 +1,45 @@
+@import "../../styles/variables";
+
+.todo {
+  min-height: 50px;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border: 2px solid $clr-primary;
+  border-radius: 5px;
+  list-style: none;
+  word-wrap: break-word;
+
+  .todo__content,
+  .todo-edit__content {
+    font-size: $fs-p;
+  }
+
+  .todo-edit__content {
+    width: 400px;
+    border: none;
+  }
+  .todo__content {
+    width: 300px;
+  }
+
+  .todo__icons {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    height: 30px;
+    width: 30px;
+    margin-left: 15px;
+    color: grey;
+    cursor: pointer;
+  }
+}
+.todo-edit {
+  border: 2px solid #ff1919;
+}

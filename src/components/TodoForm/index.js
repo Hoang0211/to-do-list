@@ -1,3 +1,5 @@
+import "./todoForm.scss";
+
 function TodoForm(props) {
   return (
     <form className="todos__form">

@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+
+.todos__form {
+  height: 50px;
+  width: 500px;
+  margin-bottom: 40px;
+
+  .todos__input,
+  .todos__add,
+  .todos__filter {
+    height: 100%;
+    padding: 5px 10px;
+    font-size: $clr-primary;
+  }
+  .todos__input {
+    width: 220px;
+    border: 2px solid $clr-primary;
+  }
+  .todos__add {
+    padding: 5px 20px;
+    border: none;
+    color: $clr-light;
+    background: $clr-primary;
+    cursor: pointer;
+  }
+  .todos__filter {
+    float: right;
+    border: 2px solid $clr-primary;
+  }
+}

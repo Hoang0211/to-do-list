@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import { RiCheckLine, RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
+
+import "./todo.scss";
 
 function Todo(props) {
   const [editing, setEditing] = useState(false);
