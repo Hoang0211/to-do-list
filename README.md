@@ -8,8 +8,8 @@ Todo list app created as a personal project.
 
 ## Table Of Contents
 
-- [Application Features](#The-Challenge)
-- [Technologies Used](#Tech-Used)
+- [Application Features](#Application-Features)
+- [Technologies Used](#Technologies-Used)
 - [Future Additions](#Future-Additions)
 
 ---
