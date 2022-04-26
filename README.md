@@ -25,11 +25,21 @@ A todo list web application that allow users to manage the status of their tasks
 - Tasks with different status can be filtered from the list.
 - Created tasks need to be stored in local storage so reloading web page will not remove them.
 - Application layout is responsive.
+
   ![page load](./readme-assets/responsive-layout.gif)
+
+[Back To Top](#Table-Of-Contents)
 
 ---
 
 ## Technologies Used
+
+- React.js (Hooks)
+- Node SASS
+- Local Storage
+- GitHub Pages
+
+[Back To Top](#Table-Of-Contents)
 
 ---
 
