@@ -16,15 +16,15 @@ Todo list app created as a personal project.
 
 ## Application Features
 
-A todo list web application that allow users to manage the status of their tasks.
+The application serves as a todo list web that allows users to manage the status of their tasks.
 
 ### Requirements
 
 - Simple to use interface.
-- Tasks can be added, edited, deleted, or marked as complete.
-- Tasks with different status can be filtered from the list.
-- Created tasks need to be stored in local storage so reloading web page will not remove them.
-- Application layout is responsive.
+- Ability to add, edit, delete, modify complete status for task.
+- Ability to filter tasks based on complete status.
+- Data saved after reload.
+- Responsive layout.
 
   ![page load](./readme-assets/responsive-layout.gif)
 
@@ -34,10 +34,10 @@ A todo list web application that allow users to manage the status of their tasks
 
 ## Technologies Used
 
-- React.js (Hooks)
-- Node SASS
-- Local Storage
-- GitHub Pages
+This project saves data to local storage and is deployed using GitHub Pages.
+
+- React.js
+- SCSS
 
 [Back To Top](#Table-Of-Contents)
 
